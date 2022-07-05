@@ -1,0 +1,26 @@
+{
+  "name": "desafio-m5",
+  "version": "1.0.0",
+  "source": "src/index.html",
+  "dependencies": {
+    "yarn": "^1.22.19"
+  },
+  "devDependencies": {
+    "parcel": "^2.6.2"
+  },
+  "scripts": {
+    "dev": "parcel",
+    "build": "parcel build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrunoDeLeoni/desafio-m5.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrunoDeLeoni/desafio-m5/issues"
+  },
+  "homepage": "https://github.com/BrunoDeLeoni/desafio-m5#readme"
+}
