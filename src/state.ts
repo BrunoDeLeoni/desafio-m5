@@ -1,9 +1,6 @@
 type Gameplay = "0" | "1" | "2";
-type Game = {
-    computerPlay: Gameplay,
-    myPlay: Gameplay,
-}
 
+// STATE
 const state = {
     data:{
         currentGame:{
@@ -12,55 +9,80 @@ const state = {
         },
         history:[
             {
-
+                myScore: 0,
+                computerScore: 0,
             }
         ]
     },
     setMove(move: Gameplay){
         const currentState = this.getState();
-        currentState.currentGame.myPlay;
+        currentState.currentGame.myPlay = move;
+        const computerMove = () => {
+            const x = ["0", "1", "2"]
+            return x[Math.floor(Math.random() * 3)]
+        }
+        currentState.currentGame.computerPlay = computerMove();
+        this.pushToHistory();
     },
     getState(){
-
+        return this.data;
     },
-    setState(){
-
+    setState(newState){
+        this.data = newState;
     },
-    init(){
-
+    initState(){
+        const localData = localStorage.getItem("saved-state")
+        if (localData !== null){
+            this.setState(JSON.parse(localData))
+        }
     },
-    suscribe(){
-
-    },
-    changeItemState(){
-
-    },
-    pushToHistory(play: Game){
+    pushToHistory(){
+        const resultado = this.whoWins();
         const currentState = this.getState();
-        currentState.history({play})
+        const myScore = currentState.history.myScore;
+        const computerScore = currentState.history.computerScore;
+    
+        if (resultado == "tie") {
+            this.setState({
+                ...currentState,
+                history: {
+                    myScore: myScore,
+                    computerScore: computerScore
+                }           
+            })
+        } else if (resultado == "win") {
+            this.setState({
+                ...currentState,
+                history: {
+                    myScore: myScore + 1,
+                    computerScore: computerScore
+                }
+            })
+        } else if (resultado == "lost") {
+            this.setState({
+                ...currentState,
+                history: {
+                    myScore: myScore,
+                    computerScore: computerScore + 1
+                }
+            })
+        }
     },
     whoWins(myPlay: Gameplay, computerPlay: Gameplay){
         const empate = myPlay == computerPlay
         const winWhit0 = myPlay == "0" && computerPlay == "2"
         const winWhit1 = myPlay == "1" && computerPlay == "0"
         const winWhit2 = myPlay == "2" && computerPlay == "1"
-        // const lostWhit0 = myPlay == "0" && computerPlay == "1"
-        // const lostWhit1 = myPlay == "1" && computerPlay == "2"
-        // const lostWhit2 = myPlay == "2" && computerPlay == "0"
-        // const win = [winWhit0, winWhit1, winWhit2].includes(true)
-        // const lost = [lostWhit0, lostWhit1, lostWhit2].includes(true)
+
         if ([empate].includes(true)){
-            return console.log("empate");
+            return "tie";
         } else if ([winWhit0, winWhit1, winWhit2].includes(true)){
-            return console.log("win");
+            return "win";
         } else {
-            return console.log("lost");
+            return "lost";
         }
     }
 }
 
-// state.setMove()
-state.pushToHistory({
-    computerPlay: "0",
-    myPlay: "2",
-})
+// EXPORT
+export { state };

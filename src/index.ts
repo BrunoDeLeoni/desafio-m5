@@ -1,9 +1,8 @@
-let counter = 0
-const intervalId = setInterval(()=>{
-    counter++
-    console.log("hola " + counter);
-    
-    if (counter > 2){
-        clearInterval(intervalId);
-    }
-},1000)
+import { initRouter } from "./router";
+import { ButtonComponent } from "./components/button-component"
+
+(function () {
+    ButtonComponent();
+    const root = document.querySelector(".root")
+    initRouter(root)
+})();

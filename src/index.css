@@ -3,11 +3,18 @@
 }
 
 body{
-    margin: 0;
-    background-color:rgb(105, 105, 255)
-}
-
-.root{
+    margin: 0 auto;
+    background-image: url("./assets/fondo-mobile.jpg");
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
     max-width: 100%;
     max-height: 100vh;
+}
+@media (min-width:769px) {
+    body{
+        display: flex;
+        justify-content: center;
+        max-width:820px;
+        background-image: url("./assets/fondo-desktop.jpg");
+    }
 }
