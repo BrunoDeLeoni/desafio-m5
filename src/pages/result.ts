@@ -1,5 +1,11 @@
 import { state } from "../state";
 
+const r = {
+    rock: require("url:../assets/rock.png"),
+    paper: require("url:../assets/paper.png"),
+    scissor: require("url:../assets/scissor.png")
+}
+
 export function initResultPage (params){
     
     //VARIABLES
@@ -11,12 +17,31 @@ export function initResultPage (params){
     const myPlay = currentState.currentGame.myPlay;
     const computerPlay = currentState.currentGame.computerPlay;
     
+    let imgY = ""
+    let imgX = ""
+    
+    if (computerPlay == 0){
+        imgY = r.rock
+    } else if (computerPlay == 1){
+        imgY = r.paper
+    } else {
+        imgY = r.scissor
+    }
+
+    if (myPlay == 0){
+        imgX = r.rock
+    } else if (myPlay == 1){
+        imgX = r.paper
+    } else {
+        imgX = r.scissor
+    }
+
     //DIV
     div.innerHTML = 
     `
     <h1> RESULTADO </h1>
-    <div>${computerPlay}</div>
-    <div>${myPlay}</div>
+    <img src=${imgY}>
+    <img src=${imgX}>
     `
 
     //STYLE

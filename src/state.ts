@@ -21,7 +21,7 @@ const state = {
             const x = ["0", "1", "2"]
             return x[Math.floor(Math.random() * 3)]
         }
-        currentState.currentGame.computerPlay = computerMove();
+        currentState.currentGame.computerPlay = computerMove();        
         this.pushToHistory();
     },
     getState(){
@@ -37,6 +37,8 @@ const state = {
         }
     },
     pushToHistory(){
+        console.log("x");
+        
         const resultado = this.whoWins();
         const currentState = this.getState();
         const myScore = currentState.history.myScore;
@@ -66,7 +68,7 @@ const state = {
                     computerScore: computerScore + 1
                 }
             })
-        }
+        }        
     },
     whoWins(myPlay: Gameplay, computerPlay: Gameplay){
         const empate = myPlay == computerPlay
@@ -81,7 +83,13 @@ const state = {
         } else {
             return "lost";
         }
-    }
+    },
+    cleanData() {
+        localStorage.setItem("data", JSON.stringify({
+            myScore: 0,
+            computerScore: 0,
+        })
+    )}
 }
 
 // EXPORT

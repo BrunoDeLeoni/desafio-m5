@@ -9,7 +9,7 @@ export function initInstruccionPage (params){
     div.innerHTML = 
     `
     <h1> Presiona Jugar y elegí tu jugada entre Piedra, Papel o Tijera dentro del tiempo! </h1>
-    <div>
+    <div class="button-game">
         <button-component class="start">Jugar</button-component>
         <button-component class="inicio">Inicio</button-component>
     </div>
@@ -27,6 +27,16 @@ export function initInstruccionPage (params){
     h1{
         font-size: 40px;
         text-align: center;
+    }
+    .button-game{
+        display: grid;
+        gap: 20px;
+    }
+    @media (min-width:769px) {
+        .button-game{
+            display: flex;
+            gap: 20px;
+        }
     }
     `
 
