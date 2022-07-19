@@ -5,24 +5,21 @@ const state = {
     data:{
         currentGame:{
             myPlay: "",
-            computerPlay: "",
+            computerPlay: ""
         },
-        history:[
-            {
-                myScore: 0,
-                computerScore: 0,
-            }
-        ]
+        history:{
+            myScore: 0,
+            computerScore: 0
+        }
     },
-    setMove(move: Gameplay){
+    setMove(move: Gameplay){        
         const currentState = this.getState();
         currentState.currentGame.myPlay = move;
         const computerMove = () => {
             const x = ["0", "1", "2"]
             return x[Math.floor(Math.random() * 3)]
         }
-        currentState.currentGame.computerPlay = computerMove();        
-        this.pushToHistory();
+        currentState.currentGame.computerPlay = computerMove(); 
     },
     getState(){
         return this.data;
@@ -37,38 +34,43 @@ const state = {
         }
     },
     pushToHistory(){
-        console.log("x");
-        
         const resultado = this.whoWins();
         const currentState = this.getState();
         const myScore = currentState.history.myScore;
         const computerScore = currentState.history.computerScore;
     
         if (resultado == "tie") {
+            console.log("TIE");
             this.setState({
                 ...currentState,
-                history: {
+                history:{
                     myScore: myScore,
                     computerScore: computerScore
                 }           
             })
         } else if (resultado == "win") {
+            console.log("WIN");
             this.setState({
                 ...currentState,
-                history: {
+                history:{
                     myScore: myScore + 1,
                     computerScore: computerScore
                 }
             })
-        } else if (resultado == "lost") {
+        } else {
+            console.log("LOST");
             this.setState({
                 ...currentState,
-                history: {
+                history:{
                     myScore: myScore,
                     computerScore: computerScore + 1
                 }
             })
-        }        
+        }
+
+        localStorage.setItem("data", JSON.stringify(state.getState()))        
+        
+        console.log("RETURN", state.data.history);
     },
     whoWins(myPlay: Gameplay, computerPlay: Gameplay){
         const empate = myPlay == computerPlay
@@ -85,6 +87,7 @@ const state = {
         }
     },
     cleanData() {
+        console.log("CLEAN");
         localStorage.setItem("data", JSON.stringify({
             myScore: 0,
             computerScore: 0,

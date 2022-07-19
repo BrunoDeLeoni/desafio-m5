@@ -8,7 +8,7 @@ export function initWelcomePage (params){
     //DIV
     div.innerHTML = 
     `
-    <h1> PIEDRA, PAPÉL O TIJERA </h1>
+    <h1> PIEDRA, PAPEL O TIJERA </h1>
     <button-component class="play">PLAY</button-component>
     `
 

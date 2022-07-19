@@ -14,8 +14,8 @@ export function initScorePage (params){
     div.className = "scorePage"
 
     const currentState = state.getState()
-    const myScore = currentState.history[0].myScore;
-    const computerScore = currentState.history[0].computerScore;
+    const myScore = currentState.history.myScore;
+    const computerScore = currentState.history.computerScore;
     const myPlay = currentState.currentGame.myPlay;
     const computerPlay = currentState.currentGame.computerPlay;
     const resultado = state.whoWins(myPlay, computerPlay)
@@ -77,7 +77,7 @@ export function initScorePage (params){
     //CLICK
     const buttonReturn: any = div.querySelector(".back")
     buttonReturn.addEventListener("click", ()=>{
-        params.goTo("/instruccion")
+        params.goTo("/game")
     })
     const buttonInicio: any = div.querySelector(".inicio")
     buttonInicio.addEventListener("click", ()=>{

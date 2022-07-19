@@ -22,7 +22,7 @@ export function initGamePage (params){
     `
     <h1> GAME </h1>
     <div class="counter">${counter}</div>
-    <div> OPCIONES </div>
+    <options-component></options-component>
     `
 
     //STYLE
