@@ -3,9 +3,8 @@ import { ButtonComponent } from "./components/button-component"
 import { OptionsGame } from "./components/options-component"
 
 (function () {
+    const root = document.querySelector(".root")
+    initRouter(root);
     ButtonComponent();
     OptionsGame();
-    const root = document.querySelector(".root")
-    initRouter(root)
-
 })();

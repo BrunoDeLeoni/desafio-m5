@@ -44,10 +44,10 @@ export function OptionsGame(){
             const scissor: any = div.querySelector(".scissor")
 
             state.setMove("0")
-
+            
             shadow.appendChild(style)
             shadow.appendChild(div)
-        }
+            }
     }
     customElements.define("options-component", Options)
 }

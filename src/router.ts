@@ -28,7 +28,7 @@ const routes = [
     }
 ]
 
-export function initRouter(container: Element){
+export function initRouter(container: any){
     function goTo(path){
         history.pushState({}, "", path);
         handleRoute(path);
@@ -39,7 +39,7 @@ export function initRouter(container: Element){
         for (const r of routes) {
             if (r.path.test(route)) {
                 const el = r.component({goTo: goTo});
-                while (container.firstChild) {
+                while (container.firstChild){
                     container.removeChild(container.firstChild)
                 }
                 container.appendChild(el)

@@ -1,3 +1,5 @@
+import { state } from "../state";
+
 export function initGamePage (params){
     
     //VARIABLES
@@ -43,6 +45,8 @@ export function initGamePage (params){
         text-align: center;
     }
     `
+
+    state.pushToHistory()
 
     div.appendChild(style)
     return div 

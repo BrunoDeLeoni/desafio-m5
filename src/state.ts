@@ -28,17 +28,25 @@ const state = {
         this.data = newState;
     },
     initState(){
-        const localData = localStorage.getItem("saved-state")
+        const localData = localStorage.getItem("data")
+        console.log(localData);
+        
         if (localData !== null){
             this.setState(JSON.parse(localData))
         }
     },
+    savedData(){
+        const currentState = this.getState().history;
+        localStorage.setItem("data", JSON.stringify(currentState));
+    },
     pushToHistory(){
-        const resultado = this.whoWins();
         const currentState = this.getState();
+        const myPlay = currentState.currentGame.myPlay;
+        const computerPlay = currentState.currentGame.computerPlay;
         const myScore = currentState.history.myScore;
         const computerScore = currentState.history.computerScore;
-    
+        const resultado = this.whoWins(myPlay, computerPlay);
+            
         if (resultado == "tie") {
             console.log("TIE");
             this.setState({
@@ -68,8 +76,7 @@ const state = {
             })
         }
 
-        localStorage.setItem("data", JSON.stringify(state.getState()))        
-        
+        this.savedData();
         console.log("RETURN", state.data.history);
     },
     whoWins(myPlay: Gameplay, computerPlay: Gameplay){
@@ -86,13 +93,16 @@ const state = {
             return "lost";
         }
     },
-    cleanData() {
-        console.log("CLEAN");
-        localStorage.setItem("data", JSON.stringify({
-            myScore: 0,
-            computerScore: 0,
+    cleanData(){
+        this.setState({
+            ...this.data,
+            history:{
+                myScore: 0,
+                computerScore: 0
+            }
         })
-    )}
+        this.savedData();
+    }
 }
 
 // EXPORT
