@@ -29,23 +29,19 @@ const state = {
     },
     initState(){
         const localData = localStorage.getItem("data")
-        console.log(localData);
-        
         if (localData !== null){
             this.setState(JSON.parse(localData))
         }
     },
     savedData(){
-        const currentState = this.getState().history;
+        const currentState = this.getState();
         localStorage.setItem("data", JSON.stringify(currentState));
     },
     pushToHistory(){
         const currentState = this.getState();
-        const myPlay = currentState.currentGame.myPlay;
-        const computerPlay = currentState.currentGame.computerPlay;
+        const resultado = this.whoWins();
         const myScore = currentState.history.myScore;
         const computerScore = currentState.history.computerScore;
-        const resultado = this.whoWins(myPlay, computerPlay);
             
         if (resultado == "tie") {
             console.log("TIE");
@@ -75,11 +71,14 @@ const state = {
                 }
             })
         }
-
         this.savedData();
         console.log("RETURN", state.data.history);
     },
-    whoWins(myPlay: Gameplay, computerPlay: Gameplay){
+    whoWins(){
+        const currentState = this.getState();        
+        const myPlay = currentState.currentGame.myPlay
+        const computerPlay = currentState.currentGame.computerPlay
+
         const empate = myPlay == computerPlay
         const winWhit0 = myPlay == "0" && computerPlay == "2"
         const winWhit1 = myPlay == "1" && computerPlay == "0"

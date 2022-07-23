@@ -20,9 +20,9 @@ export function OptionsGame(){
 
             div.innerHTML =
             `
-            <img variant="selected" class="rock" src=${o.rock}>
-            <img variant="selected" class="paper" src=${o.paper}>
-            <img variant="selected" class="scissor" src=${o.scissor}>
+            <img variant="init" class="rock" src=${o.rock}>
+            <img variant="init" class="paper" src=${o.paper}>
+            <img variant="init" class="scissor" src=${o.scissor}>
             `
             style.innerHTML =
             `
@@ -34,7 +34,7 @@ export function OptionsGame(){
                 width: 90px;
                 height: 90px;
             }
-            .trasnparent{
+            .transparent{
                 opacity: 0.5;
             }
             `
@@ -43,11 +43,37 @@ export function OptionsGame(){
             const paper: any = div.querySelector(".paper")
             const scissor: any = div.querySelector(".scissor")
 
-            state.setMove("0")
+            console.log("init-click");
+            
+            if (this.getAttribute("variant") == "selected"){
+                rock.addEventListener("click", () => {
+                    paper.classList.add("transparent")
+                    scissor.classList.add("transparent")
+                    state.setMove("0")
+                })
+            }
+            if (this.getAttribute("variant") == "selected"){
+                console.log("pre-click");
+                paper.addEventListener("click", () => {
+                    console.log("post-click");
+                    rock.classList.add("transparent")
+                    scissor.classList.add("transparent")
+                    state.setMove("1")
+                })
+            }
+            if (this.getAttribute("variant") == "selected"){
+                scissor.addEventListener("click", () => {
+                    rock.classList.add("transparent")
+                    paper.classList.add("transparent")
+                    state.setMove("2")
+                })
+            }
+
+            console.log("finish-click");
             
             shadow.appendChild(style)
             shadow.appendChild(div)
-            }
+        }
     }
     customElements.define("options-component", Options)
 }

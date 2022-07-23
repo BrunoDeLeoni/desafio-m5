@@ -14,11 +14,9 @@ export function initScorePage (params){
     div.className = "scorePage"
 
     const currentState = state.getState()
+    const resultado = state.whoWins()
     const myScore = currentState.history.myScore;
     const computerScore = currentState.history.computerScore;
-    const myPlay = currentState.currentGame.myPlay;
-    const computerPlay = currentState.currentGame.computerPlay;
-    const resultado = state.whoWins(myPlay, computerPlay)
     
     let imgR = ""
 

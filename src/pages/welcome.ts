@@ -9,7 +9,10 @@ export function initWelcomePage (params){
     div.innerHTML = 
     `
     <h1> PIEDRA, PAPEL O TIJERA </h1>
-    <button-component class="play">PLAY</button-component>
+    <div class="button-welcome">
+        <button-component class="play">Jugar</button-component>
+        <button-component class="score">Puntaje</button-component>
+    </div>
     `
 
     //STYLE
@@ -25,12 +28,27 @@ export function initWelcomePage (params){
         font-size: 75px;
         text-align: center;
     }
+    .button-welcome{
+        display: grid;
+        gap: 20px;
+    }
+    @media (min-width:769px) {
+        .button-welcome{
+            display: flex;
+            gap: 20px;
+        }
+    }
     `
 
     //CLICK
     const buttonPlay: any = div.querySelector(".play")
     buttonPlay.addEventListener("click", ()=>{
         params.goTo("/instruccion")
+    })
+
+    const buttonScore: any = div.querySelector(".score")
+    buttonScore.addEventListener("click", ()=>{
+        params.goTo("/score")
     })
 
     div.appendChild(style)

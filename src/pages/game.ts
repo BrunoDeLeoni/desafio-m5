@@ -8,7 +8,7 @@ export function initGamePage (params){
     div.className = "gamePage"
 
     // CONTADOR
-    let counter = 3
+    let counter = 1
     const intervalId = setInterval(()=>{
         counter--
         const counterEl: any = div.querySelector(".counter");
@@ -18,7 +18,7 @@ export function initGamePage (params){
             params.goTo("/result")
         }
     },1000)
-
+    
     //DIV
     div.innerHTML = 
     `

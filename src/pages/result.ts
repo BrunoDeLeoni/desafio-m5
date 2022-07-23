@@ -62,7 +62,7 @@ export function initResultPage (params){
     let counter = 0
     const intervalId = setInterval(()=>{
         counter++        
-        if (counter > 2){
+        if (counter > 0){
             clearInterval(intervalId);
             params.goTo("/score")
         }

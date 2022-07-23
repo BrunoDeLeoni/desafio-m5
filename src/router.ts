@@ -4,7 +4,6 @@ import { initGamePage } from "./pages/game"
 import { initScorePage } from "./pages/score"
 import { initResultPage } from "./pages/result"
 
-
 const routes = [
     {
         path: /\/welcome/,
